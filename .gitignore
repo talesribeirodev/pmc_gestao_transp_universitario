@@ -1,0 +1,46 @@
+# Ignora o arquivo de ambiente
+.env
+
+# Ignora dependências do Composer
+/vendor/
+
+# Ignora dependências do Node.js (caso use npm/yarn para front-end)
+node_modules/
+
+# Ignora arquivos de cache do PHP
+*.log
+*.cache
+*.tmp
+*.lock
+*.bak
+*.swp
+
+# Ignora cache do PHPUnit
+.phpunit.result.cache
+
+# Ignora arquivos de cache do sistema
+.DS_Store
+Thumbs.db
+
+# Ignora arquivos de upload
+app/uploads/
+
+# Ignora configurações locais do IDE
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Ignora arquivos de debug
+debug.log
+
+# Ignora arquivos do sistema operacional
+ehthumbs.db
+desktop.ini
+
+# Ignora arquivos gerados pelo sistema
+*.orig
+*.old
+
+# Ignora arquivos de backup de editores
+*~
