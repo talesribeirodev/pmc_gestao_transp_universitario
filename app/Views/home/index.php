@@ -61,10 +61,10 @@ function getStatusBadge($statusId, $statusNome) {
                     </td>
                     <td><?= htmlspecialchars($inscricao['cpf']) ?></td>
                     <td style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 200px;"><?= htmlspecialchars($inscricao['nome']) ?></td>
-                    <td><?= htmlspecialchars($inscricao['instituicao_ensino']) ?></td>
-                    <td><?= htmlspecialchars($inscricao['embarque']) ?></td>
-                    <td><?= htmlspecialchars($inscricao['destino']) ?></td>
-                    <td><?= htmlspecialchars($inscricao['retorno']) ?></td>
+                    <td style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 200px;"><?= htmlspecialchars($inscricao['instituicao_ensino']) ?></td>
+                    <td style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 200px;"><?= htmlspecialchars($inscricao['embarque']) ?></td>
+                    <td style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 200px;"><?= htmlspecialchars($inscricao['destino']) ?></td>
+                    <td style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 200px;"><?= htmlspecialchars($inscricao['retorno']) ?></td>
                     <td><?= getStatusBadge($inscricao['id_status'], htmlspecialchars($inscricao['nome_status'])) ?></td>
                     <td style="white-space: nowrap;">
                         <?php

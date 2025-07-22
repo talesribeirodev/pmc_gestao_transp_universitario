@@ -11,10 +11,12 @@ use PDO;
 class SubmitService
 {
     private $db;
+    private $cpf_user;
 
     public function __construct()
     {
         $this->db = (new Database())->connect();
+        $this->cpf_user = $_SESSION['usuario']['SamAccountName'] ?? '-';
     }
 
     public function listarInscricoesRead()
@@ -78,18 +80,29 @@ class SubmitService
 
     public function aprovarInscricao($id)
     {
-        $sql = "UPDATE inscricoes_write SET id_status = 2, updatedAt = CURRENT_TIMESTAMP WHERE id = :id";
+        $sql = "UPDATE inscricoes_write 
+            SET id_status = 2, 
+                cpf_user = :cpf_user, 
+                updatedAt = CURRENT_TIMESTAMP 
+            WHERE id = :id";
         $stmt = $this->db->prepare($sql);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->bindParam(':cpf_user', $this->cpf_user, PDO::PARAM_STR);
         return $stmt->execute();
     }
 
     public function cancelarInscricao($id, $justificativa)
     {
-        $sql = "UPDATE inscricoes_write SET id_status = 3, justificativa = :justificativa, updatedAt = CURRENT_TIMESTAMP WHERE id = :id";
+        $sql = "UPDATE inscricoes_write 
+            SET id_status = 3, 
+                justificativa = :justificativa, 
+                cpf_user = :cpf_user, 
+                updatedAt = CURRENT_TIMESTAMP 
+            WHERE id = :id";
         $stmt = $this->db->prepare($sql);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->bindParam(':justificativa', $justificativa, PDO::PARAM_STR);
+        $stmt->bindParam(':cpf_user', $this->cpf_user, PDO::PARAM_STR);
         return $stmt->execute();
     }
 
