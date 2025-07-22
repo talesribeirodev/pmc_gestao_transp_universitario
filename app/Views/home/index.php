@@ -60,13 +60,13 @@ function getStatusBadge($statusId, $statusNome) {
                         <i class="bi bi-plus-circle-fill"></i>
                     </td>
                     <td><?= htmlspecialchars($inscricao['cpf']) ?></td>
-                    <td><?= htmlspecialchars($inscricao['nome']) ?></td>
+                    <td style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 200px;"><?= htmlspecialchars($inscricao['nome']) ?></td>
                     <td><?= htmlspecialchars($inscricao['instituicao_ensino']) ?></td>
                     <td><?= htmlspecialchars($inscricao['embarque']) ?></td>
                     <td><?= htmlspecialchars($inscricao['destino']) ?></td>
                     <td><?= htmlspecialchars($inscricao['retorno']) ?></td>
                     <td><?= getStatusBadge($inscricao['id_status'], htmlspecialchars($inscricao['nome_status'])) ?></td>
-                    <td>
+                    <td style="white-space: nowrap;">
                         <?php
                         $dt = new DateTime($inscricao['createdAt']);
                         echo htmlspecialchars($dt->format('d/m/Y H:i'));
@@ -153,7 +153,7 @@ function getStatusBadge($statusId, $statusNome) {
 <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/zooming@2.1.1/build/zooming.min.js"></script>
 <script src="<?= BASE_URL ?>assets/js/main.js"></script>
 </body>
 </html>

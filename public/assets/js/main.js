@@ -3,7 +3,7 @@ $(document).ready(function () {
     language: {
       url: "//cdn.datatables.net/plug-ins/1.13.6/i18n/pt-BR.json",
     },
-    order: [[1, "desc"]],
+    order: [[8, "desc"]],
   });
 
   $("#inscricoesTable tbody").on("click", "td.details-control", function () {
@@ -340,30 +340,47 @@ $(document).ready(function () {
 
     $("#conteudoDocumento").html(conteudo);
 
-    mediumZoom(".zoomable", {
-      margin: 24,
-      scrollOffset: 40,
+    const zooming = new Zooming({
+      container: document.body,
+      bgColor: "rgba(0, 0, 0, 0.8)",
+      scaleBase: 1,
+      scaleExtra: 1.5,
+      scrollThreshold: 40,
     });
-
-    const backdropFilho = $(
-      '<div class="modal-backdrop fade modal-backdrop-child show"></div>'
-    );
-    $("body").append(backdropFilho);
+    zooming.listen("#conteudoDocumento img.zoomable");
 
     const modalElem = document.getElementById("modalDocumento");
     const modal = new bootstrap.Modal(modalElem, {
-      backdrop: false,
+      backdrop: true,
     });
     modal.show();
 
-    $(document).on("click", ".modal-backdrop-child", function () {
-      const modalInstance = bootstrap.Modal.getInstance(modalElem);
-      if (modalInstance) modalInstance.hide();
-    });
+    $(modalElem)
+      .off("hidden.bs.modal")
+      .on("hidden.bs.modal", function () {
+        $("#conteudoDocumento").empty();
 
-    $(modalElem).on("hidden.bs.modal", function () {
-      $(".modal-backdrop-child").remove();
-      $("#conteudoDocumento").empty();
-    });
+        if (zooming && zooming.active) {
+          zooming.close();
+        }
+
+        $("div")
+          .filter(function () {
+            const bg = $(this).css("background-color");
+            const pos = $(this).css("position");
+            return (
+              bg === "rgba(0, 0, 0, 0.8)" &&
+              pos === "fixed" &&
+              $(this).css("z-index") == "998"
+            );
+          })
+          .remove();
+
+        $(".zooming-layer, .zooming-overlay, .zooming-transition").remove();
+
+        $(".modal-backdrop-child").remove();
+
+        $("body").removeClass("modal-open");
+      });
   });
 });
