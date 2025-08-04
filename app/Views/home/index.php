@@ -66,11 +66,10 @@ function getStatusBadge($statusId, $statusNome) {
                     <td style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 200px;"><?= htmlspecialchars($inscricao['destino']) ?></td>
                     <td style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 200px;"><?= htmlspecialchars($inscricao['retorno']) ?></td>
                     <td><?= getStatusBadge($inscricao['id_status'], htmlspecialchars($inscricao['nome_status'])) ?></td>
-                    <td style="white-space: nowrap;">
-                        <?php
-                        $dt = new DateTime($inscricao['createdAt']);
-                        echo htmlspecialchars($dt->format('d/m/Y H:i'));
-                        ?>
+                    <td style="white-space: nowrap;"
+                        data-order="<?= htmlspecialchars((new DateTime($inscricao['createdAt']))->format('Y-m-d H:i:s')) ?>"
+                        data-search="<?= htmlspecialchars((new DateTime($inscricao['createdAt']))->format('d/m/Y H:i')) ?>">
+                        <?= htmlspecialchars((new DateTime($inscricao['createdAt']))->format('d/m/Y H:i')) ?>
                     </td>
                     <td class="d-flex gap-1">
                         <button 

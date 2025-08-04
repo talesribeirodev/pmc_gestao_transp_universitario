@@ -342,7 +342,7 @@ $(document).ready(function () {
 
     const zooming = new Zooming({
       container: document.body,
-      bgColor: "rgba(0, 0, 0, 0.8)",
+      bgColor: "rgba(0, 0, 0, 0.1)",
       scaleBase: 1,
       scaleExtra: 1.5,
       scrollThreshold: 40,
@@ -369,7 +369,7 @@ $(document).ready(function () {
             const bg = $(this).css("background-color");
             const pos = $(this).css("position");
             return (
-              bg === "rgba(0, 0, 0, 0.8)" &&
+              bg === "rgba(0, 0, 0, 0.1)" &&
               pos === "fixed" &&
               $(this).css("z-index") == "998"
             );
